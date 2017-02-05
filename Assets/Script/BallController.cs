@@ -21,7 +21,7 @@ public class BallController : MonoBehaviour {
 		//シーン中のScoreTxtオブジェクトを取得
 		this.ScoreText=GameObject.Find("ScoreText");
 	}
-	//トリガーモードで他のオブジェクトと接触した場合の処理
+	//コリジョンモードで他のオブジェクトと接触した場合の処理
 	void OnCollisionEnter(Collision other){
 		//小さい星に衝突した時
 		if (other.gameObject.tag == "SmallStarTag") {

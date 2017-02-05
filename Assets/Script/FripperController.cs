@@ -4,7 +4,6 @@ using System.Collections;
 public class FripperController : MonoBehaviour {
 	//HingiJointコンポーネントを入れる
 	private HingeJoint myHingeJoynt;
-
 	//初期の傾き
 	private float defaultAngle = 20;
 	//弾いた時の傾き
@@ -22,18 +21,32 @@ public class FripperController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		bool touchLeft = false;
+		bool touchRight = false;
+
+		foreach( Touch t in Input.touches ) {
+			Debug.Log( t.position );
+			if( t.position.x < 340 ) {
+				touchLeft = true;
+			} else {
+				touchRight = true;
+			}        
+		}
 		//左矢印キーを押した時左フリッパーを動かす
-		if (Input.GetKeyDown(KeyCode.LeftArrow) && tag == "LeftFripperTag") {
-			SetAngle (this.flickAngle);
+		if( tag == "LeftFripperTag" ) {
+			if (Input.GetKeyDown(KeyCode.LeftArrow) || touchLeft ){
+				SetAngle (this.flickAngle);
+			} else {
+				SetAngle (this.defaultAngle);
+			}
 		}
 		//右矢印キーを押した時右フリッパーを動かす
-		if (Input.GetKeyDown(KeyCode.RightArrow) && tag == "RightFripperTag") {
-			SetAngle (this.flickAngle);
-		}
-
-		//矢印キー離された時フリッパーを元に戻す
-		if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow)) {
-			SetAngle (this.defaultAngle);
+		if( tag == "RightFripperTag" ) {
+			if (Input.GetKeyDown(KeyCode.RightArrow) || touchRight ){
+				SetAngle (this.flickAngle);
+			} else {
+				SetAngle (this.defaultAngle);
+			}
 		}
 	}
 
