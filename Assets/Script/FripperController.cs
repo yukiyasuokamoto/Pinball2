@@ -34,7 +34,7 @@ public class FripperController : MonoBehaviour {
 		}
 		//左矢印キーを押した時左フリッパーを動かす
 		if( tag == "LeftFripperTag" ) {
-			if (Input.GetKeyDown(KeyCode.LeftArrow) || touchLeft ){
+			if (Input.GetKey(KeyCode.LeftArrow) || touchLeft ){
 				SetAngle (this.flickAngle);
 			} else {
 				SetAngle (this.defaultAngle);
@@ -42,12 +42,13 @@ public class FripperController : MonoBehaviour {
 		}
 		//右矢印キーを押した時右フリッパーを動かす
 		if( tag == "RightFripperTag" ) {
-			if (Input.GetKeyDown(KeyCode.RightArrow) || touchRight ){
+			if (Input.GetKey(KeyCode.RightArrow) || touchRight ){
 				SetAngle (this.flickAngle);
 			} else {
 				SetAngle (this.defaultAngle);
 			}
 		}
+
 	}
 
 	//フリッパーの傾きを設定
